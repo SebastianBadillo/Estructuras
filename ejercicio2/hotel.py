@@ -86,3 +86,13 @@ class Hotel:
         return self.registro
 
 
+from datetime import datetime
+
+# Solicitar fecha al usuario
+fecha_str = input("Ingrese una fecha (formato: dd/mm/aaaa): ")
+
+# Convertir la cadena a un objeto datetime
+fecha = datetime.strptime(fecha_str, "%d/%m/%Y")
+
+# Imprimir la fecha ingresada
+print("Fecha ingresada:", fecha)

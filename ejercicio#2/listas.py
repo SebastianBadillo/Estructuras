@@ -93,10 +93,10 @@ class Lista:
     def eleminar_ultimo(self):
         nodo_actual = self.primer_nodo
         nodo_anterior = None
-        while nodo_actual.siguiente != None:
+        while nodo_actual.siguiente != None:# type: ignore
             nodo_anterior = nodo_actual
-            nodo_actual = nodo_actual.siguiente
-        nodo_anterior.siguiente = None
+            nodo_actual = nodo_actual.siguiente# type: ignore
+        nodo_anterior.siguiente = None# type: ignore
         self.tamaño -= 1
 
     def eliminar_por_indice(self, posicion):
@@ -160,7 +160,17 @@ class Lista:
             return 'El elemento no se encuentra en la lista'
         else:
             return posiciones
-
+    def __getitem__(self, index):
+        current = self.primer_nodo
+        for x in range(index):
+            if current is None:
+                raise IndexError("Índice fuera de rango")
+            current = current.siguiente
+        if current is None:
+            raise IndexError("Índice fuera de rango")
+        return current.valor
+    
+    
     def __str__(self):
         nodos = []
         nodo_iterador = self.primer_nodo
@@ -168,15 +178,17 @@ class Lista:
             nodos.append(str(nodo_iterador.valor))
             nodo_iterador = nodo_iterador.siguiente
         return '[' + ', '.join(nodos) + ']'
-lista = Lista()
-lista.agregar_al_final(2)
-lista.agregar_al_final(2)
-lista.agregar_al_final(2)
-lista.agregar_al_final(2)
-lista.agregar_al_final(2)
-lista.agregar_al_final(2)
-lista.agregar_despues_de(6,2)
-lista.agregar_en_indice(6,3)
-print(lista)
-lista.eleminar_ultimo()
-print(lista)
+# lista = Lista()
+# lista.agregar_al_final(2)
+# lista.agregar_al_final(2)
+# lista.agregar_al_final(2)
+# lista.agregar_al_final(2)
+# lista.agregar_al_final(2)
+# lista.agregar_al_final(2)
+# lista.agregar_despues_de(6,2)
+# lista.agregar_en_indice(6,3)
+# print(lista)
+# lista.eleminar_ultimo()
+# print(lista)
+
+# print(-451%113)
